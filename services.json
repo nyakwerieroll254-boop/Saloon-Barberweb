@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "signature-cut",
+    "name": "Signature cut & finish",
+    "category": "Salon",
+    "price": 2500,
+    "duration": "45 minutes",
+    "summary": "A considered cut, finished your way.",
+    "description": "A one-to-one consultation, a thoughtful cut shaped around your texture and routine, and a finish that feels like you."
+  },
+  {
+    "slug": "wash-cut-style",
+    "name": "Wash, cut & style",
+    "category": "Salon",
+    "price": 3200,
+    "duration": "60 minutes",
+    "summary": "A reset, a shape-up, and a good blow-dry.",
+    "description": "Settle in for a restorative wash, a tailored haircut, and a polished blow-dry with a few easy tips for recreating the look at home."
+  },
+  {
+    "slug": "color-consultation",
+    "name": "Color consultation",
+    "category": "Salon",
+    "price": 0,
+    "duration": "20 minutes",
+    "summary": "Let's talk through the possibilities.",
+    "description": "Bring your ideas, references, or just a feeling. Your colorist will assess your hair and map out a considered plan before any color work begins."
+  },
+  {
+    "slug": "single-process-color",
+    "name": "Single-process color",
+    "category": "Salon",
+    "price": 4500,
+    "duration": "90 minutes",
+    "summary": "Rich, even color with a natural finish.",
+    "description": "A single all-over color service chosen to complement your features and finished with a professional style. Final pricing may vary with hair length and product use."
+  },
+  {
+    "slug": "highlights-balayage",
+    "name": "Highlights & balayage",
+    "category": "Salon",
+    "price": 8500,
+    "duration": "2–3 hours",
+    "summary": "Sun-kissed dimension, made for you.",
+    "description": "Hand-painted dimension and carefully placed highlights, planned around your starting color and desired result. A consultation is recommended before your first color service."
+  },
+  {
+    "slug": "classic-cut",
+    "name": "Classic cut",
+    "category": "Barbershop",
+    "price": 1800,
+    "duration": "35 minutes",
+    "summary": "Scissor or clipper, always personal.",
+    "description": "A relaxed consultation and a precise scissor or clipper cut, finished with a clean neckline and styling to suit your day-to-day."
+  },
+  {
+    "slug": "skin-fade",
+    "name": "Skin fade",
+    "category": "Barbershop",
+    "price": 2000,
+    "duration": "45 minutes",
+    "summary": "A clean blend with a precise finish.",
+    "description": "A detailed fade blended from skin to your chosen length, finished with crisp edges and styling. Let your barber know if you have a reference in mind."
+  },
+  {
+    "slug": "beard-trim-shape",
+    "name": "Beard trim & shape",
+    "category": "Barbershop",
+    "price": 1200,
+    "duration": "25 minutes",
+    "summary": "Good lines. The right length.",
+    "description": "A shape-up and trim tailored to your beard growth, face shape, and preferred finish, with tidy edges and a little post-service care."
+  },
+  {
+    "slug": "hot-towel-shave",
+    "name": "Hot towel shave",
+    "category": "Barbershop",
+    "price": 1800,
+    "duration": "40 minutes",
+    "summary": "Old-school ritual, very good feeling.",
+    "description": "A traditional close shave with warm towels, careful preparation, and a soothing finish. Take a moment, get comfortable, and leave feeling refreshed."
+  },
+  {
+    "slug": "cut-beard",
+    "name": "Cut & beard",
+    "category": "Barbershop",
+    "price": 2600,
+    "duration": "60 minutes",
+    "summary": "The full tidy-up, all in one chair.",
+    "description": "A tailored haircut paired with a beard trim and shape, so the whole look feels considered and balanced."
+  }
+]

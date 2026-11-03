@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1e9">
+  <title>Our Services — FORM & FADE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper:#f4f1e9; --ink:#20231d; --muted:#77786e; --green:#264b3c; --green-deep:#1c382d; --lime:#d3e781; --line:rgba(32,35,29,.18); --serif:"Playfair Display",Georgia,serif; --sans:"DM Sans",sans-serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55; }
+    a { color:inherit; text-decoration:none; }
+    .topline { display:flex; min-height:32px; align-items:center; justify-content:center; padding:4px 16px; background:var(--green); color:#fff; font-size:10px; font-weight:600; letter-spacing:.09em; text-align:center; text-transform:uppercase; }
+    .nav { width:min(1120px,calc(100% - 44px)); min-height:76px; display:flex; align-items:center; justify-content:space-between; margin:auto; border-bottom:1px solid var(--line); }
+    .brand { display:flex; flex-direction:column; font-size:16px; font-weight:700; letter-spacing:.11em; line-height:1.04; }
+    .brand small { margin-top:5px; font-size:8px; letter-spacing:.27em; }
+    .nav-link { font-size:12px; font-weight:600; }
+    .layout { width:min(1120px,calc(100% - 44px)); display:grid; grid-template-columns:1fr .85fr; gap:9%; align-items:center; margin:clamp(54px,9vw,112px) auto; }
+    .eyebrow { margin:0 0 16px; color:var(--green); font-size:11px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { margin:0; font-family:var(--serif); font-size:clamp(44px,7vw,78px); font-weight:500; line-height:1.04; }
+    .description { max-width:560px; margin:22px 0; color:var(--muted); font-size:16px; }
+    .meta { display:flex; flex-wrap:wrap; gap:24px; padding:20px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .meta small { display:block; margin-bottom:5px; color:var(--muted); font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+    .meta strong { font-size:14px; }
+    .actions { display:flex; flex-wrap:wrap; align-items:center; gap:20px; margin-top:25px; }
+    .button { min-height:50px; display:inline-flex; align-items:center; justify-content:center; gap:14px; padding:0 20px; background:var(--green); color:white; font-size:12px; font-weight:700; transition:background .2s; }
+    .button:hover { background:var(--green-deep); }
+    .back { font-size:12px; font-weight:600; }
+    .visual { position:relative; min-height:410px; overflow:hidden; background:#ddd8cb; }
+    .visual img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+    .visual-mark { position:absolute; right:14px; bottom:10px; color:rgba(244,241,233,.8); font-family:var(--serif); font-size:58px; }
+    .notice { width:min(1120px,calc(100% - 44px)); margin:0 auto 80px; color:var(--muted); font-size:11px; }
+    @media(max-width:700px) { .nav { min-height:66px; } .layout { grid-template-columns:1fr; gap:35px; margin:52px auto 64px; } h1 { font-size:56px; } .visual { min-height:340px; } .meta { gap:28px; } }
+  </style>
+</head>
+<body>
+  <div class="topline">Thoughtful cuts · Beautiful color · Proper barbering</div>
+  <header><nav class="nav" aria-label="Main navigation"><a class="brand" href="/">FORM & FADE<small>SALON · BARBERSHOP</small></a><a class="nav-link" href="/">← All services</a></nav></header>
+  <main>
+    <section class="layout" id="service-detail" aria-live="polite">
+      <div>
+        <p class="eyebrow" id="service-category">FORM & FADE SERVICES</p>
+        <h1 id="service-name">Find your service.</h1>
+        <p class="description" id="service-description">Loading service details…</p>
+        <div class="meta"><div><small>From</small><strong id="service-price">—</strong></div><div><small>Time in chair</small><strong id="service-duration">—</strong></div></div>
+        <div class="actions"><a class="button" id="book-link" href="/">Book this service <span aria-hidden="true">↗</span></a><a class="back" href="/">Back to the salon</a></div>
+      </div>
+      <div class="visual"><img id="service-image" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=85" alt="A barber working in the shop"><span class="visual-mark" aria-hidden="true">✳</span></div>
+    </section>
+    <p class="notice">Color services may require a consultation first. Prices are listed in Kenyan shillings; final color pricing may vary with hair length and product use.</p>
+  </main>
+  <script>
+    const formatPrice = price => price === 0 ? 'Complimentary' : `KSh ${Number(price).toLocaleString('en-KE')}`;
+    const slug = new URLSearchParams(location.search).get('service');
+    fetch('/api/services').then(response => {
+      if (!response.ok) throw new Error('Could not load services.');
+      return response.json();
+    }).then(services => {
+      const service = services.find(item => item.slug === slug);
+      if (!service) throw new Error('This service could not be found.');
+      document.title = `${service.name} — FORM & FADE`;
+      document.querySelector('#service-category').textContent = service.category;
+      document.querySelector('#service-name').textContent = service.name;
+      document.querySelector('#service-description').textContent = service.description;
+      document.querySelector('#service-price').textContent = formatPrice(service.price);
+      document.querySelector('#service-duration').textContent = service.duration;
+      document.querySelector('#book-link').href = `/?service=${encodeURIComponent(service.slug)}#book`;
+    }).catch(error => {
+      document.querySelector('#service-name').textContent = 'Service unavailable';
+      document.querySelector('#service-description').textContent = error.message;
+      document.querySelector('#service-price').textContent = '—';
+      document.querySelector('#service-duration').textContent = '—';
+    });
+  </script>
+</body>
+</html>

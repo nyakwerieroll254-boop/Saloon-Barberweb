@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1e9">
+  <meta name="description" content="FORM & FADE is a Nairobi salon and barbershop for considered cuts, beautiful color, and proper barbering. Book your chair in Westlands.">
+  <title>FORM & FADE — Salon & Barbershop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4f1e9;
+      --ink: #20231d;
+      --muted: #77786e;
+      --green: #264b3c;
+      --green-deep: #1c382d;
+      --lime: #d3e781;
+      --clay: #d46b4c;
+      --line: rgba(32, 35, 29, .18);
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", sans-serif;
+      --wrap: 1240px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.55; }
+    img { display: block; width: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(var(--wrap), calc(100% - 64px)); margin-inline: auto; }
+    .eyebrow { margin: 0 0 15px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .serif { font-family: var(--serif); font-weight: 500; }
+    .section-heading { max-width: 720px; margin: 0; font-family: var(--serif); font-size: clamp(38px, 5vw, 66px); font-weight: 500; line-height: 1.04; }
+    .section-intro { max-width: 460px; margin: 19px 0 0; color: var(--muted); }
+    .button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 14px; padding: 0 21px; border: 1px solid var(--ink); background: transparent; color: var(--ink); font-size: 12px; font-weight: 700; letter-spacing: .035em; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+    .button:hover { border-color: var(--green); background: var(--green); color: white; }
+    .button-dark { border-color: var(--green); background: var(--green); color: white; }
+    .button-dark:hover { border-color: var(--green-deep); background: var(--green-deep); }
+    .arrow { font-size: 18px; line-height: 1; }
+    .topline { height: 32px; display: flex; align-items: center; justify-content: center; background: var(--green); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: .09em; text-align: center; text-transform: uppercase; }
+    .site-header { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid var(--line); background: rgba(244, 241, 233, .95); backdrop-filter: blur(12px); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+    .brand { display: inline-flex; flex-direction: column; font-size: 16px; font-weight: 700; letter-spacing: .11em; line-height: 1.04; white-space: nowrap; }
+    .brand small { margin-top: 5px; font-size: 8px; font-weight: 600; letter-spacing: .27em; }
+    .nav-links { display: flex; align-items: center; gap: clamp(18px, 3vw, 38px); margin: 0; padding: 0; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover { color: var(--clay); }
+    .nav .button { min-height: 42px; padding-inline: 16px; }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+    .hero { display: grid; min-height: min(690px, calc(100svh - 108px)); grid-template-columns: 1fr 1.04fr; overflow: hidden; background: #e9e5d9; }
+    .hero-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(46px, 8vw, 112px) 7vw max(56px, 7vw) max(32px, calc((100vw - var(--wrap))/2)); background: radial-gradient(ellipse at 2% 95%, rgba(211,231,129,.3), transparent 39%), var(--paper); }
+    .hero h1 { max-width: 600px; margin: 0; font-family: var(--serif); font-size: clamp(56px, 7.5vw, 101px); font-weight: 500; letter-spacing: -.035em; line-height: .96; }
+    .hero h1 em { color: var(--green); font-weight: 500; }
+    .hero-copy > p:not(.eyebrow) { max-width: 380px; margin: 25px 0 27px; color: #64665c; font-size: 15px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
+    .hero-note { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: 11px; }
+    .hero-note::before { width: 7px; height: 7px; border-radius: 50%; background: var(--clay); content: ""; }
+    .hero-visual { position: relative; min-height: 510px; overflow: hidden; background: #9c8b70; }
+    .hero-visual img { position: absolute; inset: 0; height: 100%; object-position: center 42%; }
+    .hero-visual::after { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20,25,20,.25), transparent 45%); content: ""; }
+    .image-caption { position: absolute; z-index: 1; right: 26px; bottom: 23px; color: white; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+    .welcome-strip { display: grid; min-height: 108px; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 30px; border-bottom: 1px solid var(--line); }
+    .welcome-strip p { margin: 0; color: var(--muted); font-size: 11px; }
+    .welcome-strip p:last-child { text-align: right; }
+    .welcome-strip strong { color: var(--ink); font-weight: 600; }
+    .strip-mark { color: var(--clay); font-family: var(--serif); font-size: 33px; }
+    .services { padding: 112px 0 120px; }
+    .services-top { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 51px; }
+    .services-top .section-intro { margin-bottom: 3px; }
+    .service-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+    .service-column { padding-top: 23px; }
+    .service-column + .service-column { padding-left: 46px; border-left: 1px solid var(--line); }
+    .service-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+    .service-title h3 { margin: 0; font-family: var(--serif); font-size: 30px; font-weight: 500; }
+    .service-title span { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; }
+    .service-row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 17px 0; border-bottom: 1px solid var(--line); }
+    .service-row h4 { margin: 0; font-size: 13px; font-weight: 600; }
+    .service-row p { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+    .service-row:hover h4, .service-row:focus-visible h4 { color: var(--green); }
+    .service-row:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+    .service-price { font-size: 13px; font-weight: 600; white-space: nowrap; }
+    .services-landing { padding: 104px 0; }
+    .services-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; }
+    .services-preview h2 { max-width: 580px; }
+    .services-preview p:not(.eyebrow) { max-width: 440px; margin: 20px 0 0; color: var(--muted); }
+    .service-categories { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 37px; }
+    .service-category { padding-top: 12px; border-top: 1px solid var(--line); }
+    .service-category h3 { margin: 0 0 5px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .service-category p { margin: 0; color: var(--muted); font-size: 11px; }
+    .service-more { display: inline-flex; min-height: 48px; align-items: center; gap: 13px; margin-top: 29px; padding: 0 18px; background: var(--green); color: white; font-size: 11px; font-weight: 700; }
+    .service-more:hover { background: var(--green-deep); }
+    .about { display: grid; grid-template-columns: .92fr 1.08fr; min-height: 530px; background: var(--green); color: #f4f1e9; }
+    .about-image { min-height: 430px; overflow: hidden; }
+    .about-image img { height: 100%; min-height: 430px; object-position: center 55%; }
+    .about-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: clamp(50px, 8vw, 108px); background-image: radial-gradient(rgba(244,241,233,.1) .8px, transparent .8px); background-size: 18px 18px; }
+    .about .eyebrow { color: var(--lime); }
+    .about .section-heading { max-width: 550px; font-size: clamp(39px, 5vw, 61px); }
+    .about-copy > p:not(.eyebrow) { max-width: 450px; color: rgba(244,241,233,.76); font-size: 14px; }
+    .about-copy .button { margin-top: 13px; border-color: rgba(244,241,233,.65); color: white; }
+    .about-copy .button:hover { border-color: var(--lime); background: var(--lime); color: var(--ink); }
+    .team { padding: 112px 0; }
+    .team-head { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 42px; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .team-card { min-height: 190px; display: flex; flex-direction: column; align-items: flex-start; padding-top: 17px; border-top: 1px solid var(--line); }
+    .team-card h3 { margin: 0; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .team-card p { margin: 4px 0 15px; color: var(--muted); font-size: 10px; }
+    .team-contacts { display: flex; gap: 8px; margin-top: auto; }
+    .team-contact { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); color: var(--green); transition: background .2s, color .2s, border-color .2s; }
+    .team-contact:hover { border-color: var(--green); background: var(--green); color: white; }
+    .team-contact:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+    .team-contact svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+    .gallery { padding: 87px 0 91px; overflow: hidden; background: #e6e3d9; }
+    .gallery-head { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 34px; }
+    .gallery-grid { display: grid; grid-template-columns: 1.15fr .85fr 1fr 1fr; gap: 12px; }
+    .gallery-grid figure { aspect-ratio: 1/.95; margin: 0; overflow: hidden; background: #c9c4b8; }
+    .gallery-grid figure:nth-child(2) { aspect-ratio: 1/1.2; }
+    .gallery-grid img { height: 100%; transition: transform .6s; }
+    .gallery-grid figure:hover img { transform: scale(1.04); }
+    .reviews { display: grid; grid-template-columns: .65fr 1.35fr; gap: 60px; padding: 112px 0; }
+    .review-label { color: var(--muted); font-size: 11px; }
+    .review-quote { max-width: 760px; margin: 0; font-family: var(--serif); font-size: clamp(30px, 4vw, 48px); line-height: 1.22; }
+    .review-attribution { display: flex; align-items: center; gap: 13px; margin-top: 25px; color: var(--muted); font-size: 11px; }
+    .review-stars { color: var(--clay); font-size: 14px; letter-spacing: .12em; }
+    .visit-guide { padding: 91px 0 98px; background: var(--green); color: var(--paper); }
+    .visit-guide .eyebrow { color: var(--lime); }
+    .visit-guide .section-heading { max-width: 730px; }
+    .visit-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 43px; }
+    .visit-step { padding-top: 17px; border-top: 1px solid rgba(244,241,233,.34); }
+    .visit-step > span { color: var(--lime); font-size: 10px; font-weight: 700; letter-spacing: .1em; }
+    .visit-step h3 { margin: 12px 0 7px; font-family: var(--serif); font-size: 25px; font-weight: 500; }
+    .visit-step p { max-width: 330px; margin: 0; color: rgba(244,241,233,.74); font-size: 12px; }
+    .faq { display: grid; grid-template-columns: .7fr 1.3fr; gap: 65px; padding: 101px 0; }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-item summary { display: flex; min-height: 61px; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; font-size: 13px; font-weight: 600; list-style: none; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { color: var(--green); content: "+"; font-size: 22px; font-weight: 400; }
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item p { max-width: 650px; margin: -2px 35px 18px 0; color: var(--muted); font-size: 12px; }
+    .booking { padding: 95px 0 100px; background: #e7e5d9; }
+    .booking-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: clamp(40px, 9vw, 125px); }
+    .booking-info { padding-top: 8px; }
+    .booking-info .section-heading { font-size: clamp(43px, 5.2vw, 67px); }
+    .booking-info > p:not(.eyebrow) { max-width: 360px; color: var(--muted); }
+    .contact-list { margin: 31px 0 0; padding: 0; list-style: none; }
+    .contact-list li { padding: 13px 0; border-top: 1px solid var(--line); font-size: 12px; }
+    .contact-list span { display: block; margin-bottom: 3px; color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 17px 16px; align-content: start; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field-full { grid-column: 1/-1; }
+    .field label { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+    .field input, .field select, .field textarea { width: 100%; min-height: 48px; padding: 12px 13px; border: 1px solid rgba(32,35,29,.26); border-radius: 0; outline: none; background: rgba(244,241,233,.65); color: var(--ink); font-size: 12px; }
+    .field textarea { min-height: 84px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--green); box-shadow: 0 0 0 2px rgba(38,75,60,.13); }
+    .form-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; grid-column: 1/-1; }
+    .form-note, .form-status { color: var(--muted); font-size: 10px; }
+    .form-status { flex-basis: 100%; margin: 0; color: var(--green); font-size: 12px; }
+    .site-footer { padding: 54px 0 24px; background: var(--green-deep); color: #f4f1e9; }
+    .footer-main { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 35px; padding-bottom: 42px; }
+    .footer-brand { font-size: 20px; letter-spacing: .12em; }
+    .footer-brand small { display: block; margin-top: 5px; font-size: 9px; letter-spacing: .27em; }
+    .footer-main p { max-width: 230px; color: rgba(244,241,233,.64); font-size: 11px; }
+    .footer-col h3 { margin: 0 0 13px; color: var(--lime); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
+    .footer-col a, .footer-col span { display: block; margin: 7px 0; color: rgba(244,241,233,.8); font-size: 11px; }
+    .footer-col a:hover { color: var(--lime); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 16px; padding-top: 17px; border-top: 1px solid rgba(244,241,233,.2); color: rgba(244,241,233,.55); font-size: 9px; }
+    .reveal { animation: rise-in .7s both; }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      :root, :root *, :root *::before, :root *::after { animation-duration: .01ms; animation-iteration-count: 1; transition-duration: .01ms; }
+      .reveal { animation-duration: .01ms; animation-iteration-count: 1; transition-duration: .01ms; }
+    }
+    @media (min-width: 1500px) { .hero-copy { padding-left: max(64px, calc((100vw - var(--wrap))/2)); } }
+    @media (max-width: 900px) {
+      .wrap { width: min(var(--wrap), calc(100% - 44px)); }
+      .nav-links { gap: 17px; }
+      .nav-links a { font-size: 11px; }
+      .hero-copy { padding-left: 34px; }
+      .hero h1 { font-size: clamp(54px, 8vw, 78px); }
+      .about-copy { padding: 55px 42px; }
+      .reviews { gap: 35px; }
+      .footer-main { grid-template-columns: 1.1fr 1fr 1fr; }
+      .footer-main > :first-child { grid-column: 1/-1; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: calc(100% - 36px); }
+      .topline { height: 29px; font-size: 9px; }
+      .nav { min-height: 66px; }
+      .brand { font-size: 15px; }
+      .nav > .button { display: none; }
+      .menu-toggle { display: grid; place-items: center; }
+      .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after { display: block; width: 18px; height: 1px; background: currentColor; }
+      .menu-toggle span { position: relative; }
+      .menu-toggle span::before, .menu-toggle span::after { position: absolute; left: 0; content: ""; }
+      .menu-toggle span::before { top: -6px; }
+      .menu-toggle span::after { top: 6px; }
+      .nav-links { position: absolute; top: 100%; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 8px 18px 17px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav-links.is-open { display: flex; flex-direction: column; }
+      .nav-links li { border-top: 1px solid var(--line); }
+      .nav-links a { display: block; padding: 12px 4px; font-size: 13px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { padding: 63px 25px 49px; }
+      .hero h1 { max-width: 500px; font-size: clamp(58px, 15vw, 86px); }
+      .hero-copy > p:not(.eyebrow) { margin: 19px 0 22px; font-size: 14px; }
+      .hero-visual { min-height: 400px; }
+      .welcome-strip { min-height: 84px; grid-template-columns: 1fr auto; gap: 12px; }
+      .welcome-strip p { font-size: 9px; }
+      .welcome-strip p:last-child { display: none; }
+      .services-landing, .team { padding: 77px 0; }
+      .services-preview { grid-template-columns: 1fr; gap: 14px; }
+      .service-categories { gap: 18px; margin-top: 25px; }
+      .services-top, .team-head, .gallery-head { align-items: flex-start; flex-direction: column; gap: 18px; margin-bottom: 31px; }
+      .section-heading { font-size: 45px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-column + .service-column { margin-top: 33px; padding-left: 0; border-left: 0; }
+      .service-title h3 { font-size: 27px; }
+      .about { grid-template-columns: 1fr; }
+      .about-image, .about-image img { min-height: 350px; max-height: 430px; }
+      .about-copy { padding: 57px 25px 63px; }
+      .about .section-heading { font-size: 46px; }
+      .team-grid { grid-template-columns: 1fr 1fr; gap: 22px 14px; }
+      .team-card h3 { font-size: 20px; }
+      .gallery { padding: 71px 0; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+      .gallery-grid figure, .gallery-grid figure:nth-child(2) { aspect-ratio: 1/1; }
+      .reviews { grid-template-columns: 1fr; gap: 18px; padding: 76px 0; }
+      .review-quote { font-size: 34px; }
+      .visit-guide { padding: 72px 0; }
+      .visit-steps { grid-template-columns: 1fr; gap: 22px; margin-top: 31px; }
+      .visit-step h3 { font-size: 23px; }
+      .faq { grid-template-columns: 1fr; gap: 24px; padding: 73px 0; }
+      .booking { padding: 73px 0; }
+      .booking-layout { grid-template-columns: 1fr; gap: 35px; }
+      .booking-info .section-heading { font-size: 52px; }
+      .booking-form { gap: 14px 10px; }
+      .field input, .field select { min-height: 46px; padding-inline: 10px; }
+      .form-bottom .button { width: 100%; }
+      .site-footer { padding-top: 43px; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 26px 20px; }
+      .footer-main > :first-child { grid-column: 1/-1; }
+      .footer-bottom { flex-direction: column; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topline">Nairobi's neighborhood salon & barbershop · Walk-ins welcome</div>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home">FORM & FADE<small>SALON · BARBERSHOP</small></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span></button>
+      <ul class="nav-links">
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="#story">Our story</a></li>
+        <li><a href="#team">The team</a></li>
+        <li><a href="#visit-guide">First visit</a></li>
+        <li><a href="#visit">Visit us</a></li>
+      </ul>
+      <a class="button button-dark" href="#book">Book an appointment <span class="arrow" aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Good hair. Good people. Good energy.</p>
+        <h1>Find your<br><em>own kind</em><br>of style.</h1>
+        <p>Thoughtful cuts, easy-going color, and proper barbering. A neighborhood chair for every kind of head.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#book">Find your chair <span class="arrow" aria-hidden="true">↗</span></a>
+          <span class="hero-note">Open Tue–Sun in Nairobi</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1400&q=88" alt="A barber carefully shaping a client's haircut in a neighborhood barbershop" fetchpriority="high">
+        <span class="image-caption">Your neighborhood, a little sharper.</span>
+      </div>
+    </section>
+    <div class="welcome-strip wrap" aria-label="Salon highlights">
+      <p><strong>Easy to get to.</strong> Easy to feel at home.</p>
+      <span class="strip-mark" aria-hidden="true">✳</span>
+      <p><strong>Westlands</strong> · Nairobi, Kenya</p>
+    </div>
+
+    <section class="services-landing">
+      <div class="wrap">
+        <div class="services-preview">
+          <div><p class="eyebrow">The good stuff</p><h2 class="section-heading">A little refresh<br>goes a long way.</h2></div>
+          <div><p>Come in for the regular thing, or the thing you've been thinking about for months. Salon craft and barbershop tradition, all in one neighborhood chair.</p><a class="service-more" href="/services.html">Explore services & KSh pricing <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="service-categories"><div class="service-category"><h3>Salon</h3><p>Cut · Color · Care</p></div><div class="service-category"><h3>Barbershop</h3><p>Cut · Shave · Shape</p></div></div>
+      </div>
+    </section>
+
+    <section class="about" id="story">
+      <div class="about-image"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=85" alt="Warm, light-filled salon interior with styling stations" loading="lazy"></div>
+      <div class="about-copy">
+        <p class="eyebrow">A neighborhood kind of place</p>
+        <h2 class="section-heading">Good hair is<br>personal.</h2>
+        <p>FORM & FADE started with a simple idea: getting your hair done should feel less like an errand and more like an hour well spent. We brought salon craft and barbershop tradition under one roof, with good music, good coffee, and people who listen.</p>
+        <a class="button" href="#team">Meet your people <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="team wrap" id="team">
+      <div class="team-head">
+        <div><p class="eyebrow">The hands behind the hair</p><h2 class="section-heading">You'll be in good hands.</h2></div>
+        <a class="button" href="#book">Book with the team <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <div class="team-grid">
+        <article class="team-card"><h3>Wanjiku Mwangi</h3><p>Creative Director · Color</p><div class="team-contacts"><a class="team-contact" href="tel:+254792883945" aria-label="Call Wanjiku Mwangi through the salon" title="Call the salon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2.1Z"/></svg></a><a class="team-contact" href="https://wa.me/254792883945" target="_blank" rel="noopener" aria-label="WhatsApp Wanjiku Mwangi through the salon" title="WhatsApp the salon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-4.8a8.5 8.5 0 1 1 16.3-3.7Z"/><path d="M8.8 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4-.1.6.4.7 1 1.3 1.7 1.8.6.4 1.1.6 1.4.7.2.1.4 0 .6-.2l.7-.8c.2-.2.4-.3.6-.2l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.2.6-2 .4-1.1-.3-2.4-.9-3.8-2.1-1.2-1-2.2-2.4-2.6-3.4-.4-1 .1-1.9.5-2.5Z"/></svg></a></div></article>
+        <article class="team-card"><h3>Kamau Otieno</h3><p>Master Barber · Fades</p><div class="team-contacts"><a class="team-contact" href="tel:+254792883945" aria-label="Call Kamau Otieno through the salon" title="Call the salon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2.1Z"/></svg></a><a class="team-contact" href="https://wa.me/254792883945" target="_blank" rel="noopener" aria-label="WhatsApp Kamau Otieno through the salon" title="WhatsApp the salon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-4.8a8.5 8.5 0 1 1 16.3-3.7Z"/><path d="M8.8 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4-.1.6.4.7 1 1.3 1.7 1.8.6.4 1.1.6 1.4.7.2.1.4 0 .6-.2l.7-.8c.2-.2.4-.3.6-.2l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.2.6-2 .4-1.1-.3-2.4-.9-3.8-2.1-1.2-1-2.2-2.4-2.6-3.4-.4-1 .1-1.9.5-2.5Z"/></svg></a></div></article>
+        <article class="team-card"><h3>Akinyi Njeri</h3><p>Stylist · Texture & Shape</p><div class="team-contacts"><a class="team-contact" href="tel:+254792883945" aria-label="Call Akinyi Njeri through the salon" title="Call the salon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.8 2.1Z"/></svg></a><a class="team-contact" href="https://wa.me/254792883945" target="_blank" rel="noopener" aria-label="WhatsApp Akinyi Njeri through the salon" title="WhatsApp the salon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20l1.2-4.8a8.5 8.5 0 1 1 16.3-3.7Z"/><path d="M8.8 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4-.1.6.4.7 1 1.3 1.7 1.8.6.4 1.1.6 1.4.7.2.1.4 0 .6-.2l.7-.8c.2-.2.4-.3.6-.2l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.2.6-2 .4-1.1-.3-2.4-.9-3.8-2.1-1.2-1-2.2-2.4-2.6-3.4-.4-1 .1-1.9.5-2.5Z"/></svg></a></div></article>
+      </div>
+    </section>
+
+    <section class="gallery" aria-label="A look inside Form and Fade">
+      <div class="wrap">
+        <div class="gallery-head"><div><p class="eyebrow">Around the shop</p><h2 class="section-heading">A good place to land.</h2></div><span class="review-label">WESTLANDS · NAIROBI</span></div>
+        <div class="gallery-grid">
+          <figure><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=800&q=82" alt="Barber tools ready for a fresh cut" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=82" alt="A barber at work in a classic shop" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=800&q=82" alt="Modern salon styling station" loading="lazy"></figure>
+          <figure><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=82" alt="Stylist finishing a client's hair" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews wrap" aria-label="Client review">
+      <div><p class="eyebrow">Kind words</p><span class="review-label">A NOTE FROM THE CHAIR</span></div>
+      <div><blockquote class="review-quote">“Best haircut I've had in years. They actually listened, the space is lovely, and I left feeling like myself, only better.”</blockquote><div class="review-attribution"><span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span><span>Alex R. · Nairobi local</span></div></div>
+    </section>
+
+    <section class="visit-guide" id="visit-guide">
+      <div class="wrap">
+        <p class="eyebrow">A good visit, start to finish</p>
+        <h2 class="section-heading">A little something before you settle in.</h2>
+        <div class="visit-steps">
+          <article class="visit-step"><span>01 / FIND YOUR SERVICE</span><h3>Get the details</h3><p>Every service page includes a description, an indicative price in Kenyan shillings, and the time to allow.</p></article>
+          <article class="visit-step"><span>02 / SEND A REQUEST</span><h3>Pick what works</h3><p>Choose your service, preferred date and time, and the artist you'd like to see. Add a note if you have a reference or a question.</p></article>
+          <article class="visit-step"><span>03 / WE'LL CONFIRM</span><h3>Hear back from us</h3><p>Your request is saved right away. We'll follow up by email to confirm the appointment time.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq wrap" id="faq">
+      <div><p class="eyebrow">Good to know</p><h2 class="section-heading">A few quick answers.</h2></div>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Can I walk in?</summary><p>Yes. Walk-ins are welcome whenever a chair is available. Booking ahead is the best way to get your preferred time and artist.</p></details>
+        <details class="faq-item"><summary>Is my appointment confirmed when I submit the form?</summary><p>Not quite. The form sends us your preferred details, and we'll contact you by email to confirm the appointment.</p></details>
+        <details class="faq-item"><summary>How do I choose the right service?</summary><p>Each service page has a short description and estimated duration. If you're considering a color change, start with the complimentary color consultation.</p></details>
+        <details class="faq-item"><summary>How long should I set aside?</summary><p>Timing varies by service. Check the duration on its detail page, and allow a little extra time for a first visit or a bigger change.</p></details>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <div class="booking-layout wrap">
+        <div class="booking-info" id="visit">
+          <p class="eyebrow">Come on in</p>
+          <h2 class="section-heading">Your chair<br>is waiting.</h2>
+          <p>Send us an appointment request and we'll get back to you to confirm a time. Walk-ins are welcome when there's a chair free.</p>
+          <ul class="contact-list">
+            <li><span>Find us</span>Westlands, Nairobi, Kenya</li>
+            <li><span>Call the shop</span><a href="tel:+254792883945">+254792883945</a></li>
+            <li><span>We're here</span>Tue–Fri 10am–8pm · Sat 9am–6pm · Sun 10am–4pm EAT</li>
+          </ul>
+        </div>
+        <form class="booking-form" id="booking-form">
+          <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="First and last" required></div>
+          <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+          <div class="field"><label for="service">What are we doing?</label><select id="service" name="service" required><option value="" disabled selected>Choose a service</option><option value="signature-cut">Signature cut & finish</option><option value="wash-cut-style">Wash, cut & style</option><option value="color-consultation">Color consultation</option><option value="single-process-color">Single-process color</option><option value="highlights-balayage">Highlights & balayage</option><option value="classic-cut">Classic cut</option><option value="skin-fade">Skin fade</option><option value="beard-trim-shape">Beard trim & shape</option><option value="hot-towel-shave">Hot towel shave</option><option value="cut-beard">Cut & beard</option></select></div>
+          <div class="field"><label for="stylist">Preferred artist</label><select id="stylist" name="stylist"><option>No preference</option><option>Wanjiku Mwangi</option><option>Kamau Otieno</option><option>Akinyi Njeri</option></select></div>
+          <div class="field"><label for="date">Preferred date</label><input id="date" name="date" type="date" required></div>
+          <div class="field"><label for="time">Preferred time</label><select id="time" name="time" required><option value="" disabled selected>Choose a time</option><option>Morning (9am–12pm)</option><option>Early afternoon (12pm–3pm)</option><option>Late afternoon (3pm–6pm)</option><option>Evening (after 6pm)</option></select></div>
+          <div class="field field-full"><label for="notes">Anything else we should know? <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label><textarea id="notes" name="notes" placeholder="A little about what you're looking for..."></textarea></div>
+          <div class="form-bottom"><button class="button button-dark" type="submit">Request an appointment <span class="arrow" aria-hidden="true">↗</span></button><span class="form-note">We'll follow up to confirm your time.</span><output class="form-status" id="form-status" aria-live="polite"></output></div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-main">
+        <div><a class="brand footer-brand" href="#home">FORM & FADE<small>SALON · BARBERSHOP</small></a><p>A little more you, every time you leave.</p></div>
+        <div class="footer-col"><h3>Explore</h3><a href="/services.html">Services & pricing</a><a href="#story">Our story</a><a href="#team">The team</a><a href="#book">Appointments</a></div>
+        <div class="footer-col"><h3>Find us</h3><span>Westlands, Nairobi, Kenya</span><a href="tel:+254792883945">+254792883945</a><a href="mailto:hello@formandfade.example">hello@formandfade.example</a></div>
+        <div class="footer-col"><h3>Hours</h3><span>Tue–Fri · 10am–8pm</span><span>Saturday · 9am–6pm</span><span>Sunday · 10am–4pm</span><span>Monday · Closed</span></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> FORM & FADE. All good things.</span><span>Made for good hair days.</span></div>
+    </div>
+  </footer>
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isOpen));
+      menuButton.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+      navLinks.classList.toggle('is-open', !isOpen);
+    });
+    navLinks.addEventListener('click', (event) => {
+      if (event.target.closest('a')) {
+        navLinks.classList.remove('is-open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open navigation');
+      }
+    });
+    const dateInput = document.querySelector('#date');
+    const today = new Date();
+    dateInput.min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    document.querySelector('#year').textContent = new Date().getFullYear();
+    const serviceSelect = document.querySelector('#service');
+    const requestedService = new URLSearchParams(location.search).get('service');
+    if ([...serviceSelect.options].some(option => option.value === requestedService)) serviceSelect.value = requestedService;
+
+    document.querySelector('#booking-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      const booking = Object.fromEntries(new FormData(form));
+      const status = document.querySelector('#form-status');
+      const submitButton = form.querySelector('button[type="submit"]');
+      status.textContent = 'Sending your request…';
+      submitButton.disabled = true;
+      try {
+        const response = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(booking)
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'We could not save your request. Please try again.');
+        status.textContent = `Request received for ${result.booking.service}. We’ll confirm your appointment by email.`;
+        form.reset();
+      } catch (error) {
+        status.textContent = error.message || 'We could not save your request. Please try again.';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

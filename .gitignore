@@ -1,0 +1,6 @@
+node_modules/
+.env
+/data/bookings.json
+/data/transactions.json
+/data/bookings.json.tmp
+/data/transactions.json.tmp

@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5ef">
+  <title>Bookings — FORM & FADE Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper:#f3f5ef; --white:#fff; --ink:#202a24; --muted:#758078; --green:#264b3c; --green-dark:#1c382d; --lime:#d3e781; --line:#dce2d9; --red:#9f483b; --serif:"Playfair Display",Georgia,serif; --sans:"DM Sans",sans-serif; }
+    * { box-sizing:border-box; }
+    body { min-height:100vh; margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:14px; }
+    button, input, select { font:inherit; }
+    .topbar { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; padding:0 clamp(20px,5vw,68px); border-bottom:1px solid var(--line); background:var(--white); }
+    .brand { display:flex; flex-direction:column; color:var(--ink); font-size:15px; font-weight:700; letter-spacing:.11em; line-height:1.04; text-decoration:none; }
+    .brand small { margin-top:5px; font-size:8px; letter-spacing:.24em; }
+    .topbar-right { display:flex; align-items:center; gap:17px; color:var(--muted); font-size:11px; }
+    .topbar a:not(.brand) { color:var(--green); text-decoration:none; }
+    .page { width:min(1250px,calc(100% - 44px)); margin:42px auto 80px; }
+    .heading { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:27px; }
+    .eyebrow { margin:0 0 8px; color:var(--green); font-size:10px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { margin:0; font-family:var(--serif); font-size:clamp(35px,5vw,52px); font-weight:500; line-height:1.12; }
+    .subheading { margin:8px 0 0; color:var(--muted); font-size:12px; }
+    .button { min-height:42px; display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:0 15px; border:1px solid var(--green); background:var(--green); color:#fff; font-size:11px; font-weight:700; cursor:pointer; }
+    .button:hover { background:var(--green-dark); }
+    .button-outline { border-color:var(--line); background:var(--white); color:var(--ink); }
+    .button-outline:hover { background:#e9eee7; }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-bottom:28px; }
+    .stat { min-height:100px; padding:18px 20px; border:1px solid var(--line); background:var(--white); }
+    .stat span { display:block; color:var(--muted); font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+    .stat strong { display:block; margin-top:7px; font-family:var(--serif); font-size:31px; font-weight:500; line-height:1; }
+    .toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:14px; }
+    .toolbar input, .toolbar select { min-height:41px; padding:0 12px; border:1px solid var(--line); outline:none; background:#fff; color:var(--ink); font-size:11px; }
+    .toolbar input { width:min(320px,100%); }
+    .toolbar input:focus, .toolbar select:focus, .login-input:focus { border-color:var(--green); box-shadow:0 0 0 2px rgba(38,75,60,.13); }
+    .result-count { margin-left:auto; color:var(--muted); font-size:10px; }
+    .ledger-section { margin-top:46px; padding-top:31px; border-top:1px solid var(--line); }
+    .ledger-heading { display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:18px; }
+    .ledger-heading h2 { margin:0; font-family:var(--serif); font-size:32px; font-weight:500; }
+    .ledger-heading p { margin:5px 0 0; color:var(--muted); font-size:11px; }
+    .money-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-bottom:18px; }
+    .money-stat small { display:block; margin-top:7px; color:var(--muted); font-size:9px; }
+    .ledger-layout { display:grid; grid-template-columns:.78fr 1.22fr; gap:14px; align-items:start; }
+    .ledger-panel { min-width:0; padding:19px; border:1px solid var(--line); background:var(--white); }
+    .panel-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 14px; font-size:12px; font-weight:700; }
+    .ledger-form { display:grid; gap:12px; }
+    .ledger-field { display:grid; gap:6px; }
+    .ledger-field label { font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .ledger-field input, .ledger-field select { min-height:40px; width:100%; padding:0 10px; border:1px solid var(--line); outline:none; background:#fff; color:var(--ink); font-size:11px; }
+    .ledger-field input:focus, .ledger-field select:focus { border-color:var(--green); box-shadow:0 0 0 2px rgba(38,75,60,.13); }
+    .ledger-hint { margin:0; color:var(--muted); font-size:9px; }
+    .ledger-form .button { width:100%; }
+    .transaction-message { min-height:16px; margin:0; color:var(--green); font-size:10px; }
+    .notification-feed { display:grid; gap:7px; margin-bottom:13px; }
+    .notification-item { padding:9px 10px; border-left:2px solid var(--green); background:#f2f5ed; color:#405247; font-size:10px; }
+    .notification-empty { margin:0; color:var(--muted); font-size:10px; }
+    .transaction-list { display:grid; }
+    .transaction-row { display:grid; grid-template-columns:1fr auto; gap:6px 12px; padding:13px 0; border-top:1px solid var(--line); }
+    .transaction-title { margin:0; font-size:11px; font-weight:700; }
+    .transaction-meta { margin:4px 0 0; color:var(--muted); font-size:9px; }
+    .transaction-amount { white-space:nowrap; font-size:11px; font-weight:700; }
+    .transaction-type { color:var(--green); }
+    .notification-control { min-height:38px; }
+    .bookings { display:grid; gap:10px; }
+    .booking-card { padding:18px 20px; border:1px solid var(--line); background:var(--white); }
+    .booking-top { display:flex; align-items:start; justify-content:space-between; gap:16px; }
+    .booking-name { margin:0; font-size:15px; font-weight:700; }
+    .booking-email { display:block; margin-top:4px; color:var(--muted); font-size:11px; text-decoration:none; }
+    .booking-head-right { display:flex; align-items:center; gap:12px; }
+    .booking-amount { white-space:nowrap; font-size:12px; font-weight:700; }
+    .booking-grid { display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:15px; margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+    .booking-detail span { display:block; margin-bottom:4px; color:var(--muted); font-size:9px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }
+    .booking-detail strong { display:block; font-size:11px; font-weight:600; overflow-wrap:anywhere; }
+    .booking-notes { margin:13px 0 0; padding:12px; background:#f6f7f3; color:#4f5c53; font-size:11px; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .status-select { min-width:118px; min-height:34px; padding:0 9px; border:1px solid var(--line); background:#fff; color:var(--ink); font-size:10px; }
+    .empty, .error { padding:42px 20px; border:1px solid var(--line); background:var(--white); color:var(--muted); text-align:center; font-size:12px; }
+    .error { margin-top:12px; border-color:#e4c4bf; color:var(--red); text-align:left; }
+    .login-wrap { width:min(430px,calc(100% - 40px)); margin:10vh auto; }
+    .login-panel { padding:30px; border:1px solid var(--line); background:var(--white); }
+    .login-panel h1 { font-size:39px; }
+    .login-panel > p { margin:10px 0 23px; color:var(--muted); font-size:12px; }
+    .login-label { display:block; margin-bottom:7px; font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .login-input { width:100%; min-height:45px; padding:0 12px; border:1px solid var(--line); outline:none; }
+    .login-panel .button { width:100%; margin-top:13px; }
+    .login-message { min-height:18px; margin:12px 0 0; color:var(--red); font-size:11px; }
+    [hidden] { display:none; }
+    @media(max-width:700px) { .page { margin-top:30px; } .heading { align-items:flex-start; flex-direction:column; } .heading > .topbar-right { width:100%; justify-content:flex-start; } .stats, .money-stats { gap:8px; } .stat { min-height:88px; padding:14px; } .stat strong { font-size:27px; } .booking-grid { grid-template-columns:1fr 1fr; gap:12px; } .booking-top { flex-direction:column; } .booking-head-right { width:100%; justify-content:space-between; } .result-count { width:100%; margin-left:0; } .ledger-heading { align-items:flex-start; flex-direction:column; } .ledger-layout { grid-template-columns:1fr; } }
+    @media(max-width:420px) { .topbar-right { gap:8px; font-size:10px; } .stats { grid-template-columns:1fr 1fr; } .stats .stat:last-child { grid-column:1/-1; } .toolbar input { width:100%; } .toolbar select { flex:1; } .booking-card { padding:15px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">FORM & FADE<small>ADMIN DASHBOARD</small></a>
+    <div class="topbar-right"><a href="/">View site ↗</a><button class="button button-outline" id="logout-button" type="button" hidden>Sign out</button></div>
+  </header>
+  <main>
+    <section class="login-wrap" id="login-panel" hidden>
+      <form class="login-panel" id="login-form">
+        <p class="eyebrow">Staff access</p>
+        <h1>Welcome back.</h1>
+        <p>Sign in to view and manage appointment requests.</p>
+        <label class="login-label" for="admin-username">Username</label>
+        <input class="login-input" id="admin-username" name="username" autocomplete="username" required>
+        <label class="login-label" for="admin-password">Admin password</label>
+        <input class="login-input" id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        <button class="button" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+        <output class="login-message" id="login-message" aria-live="polite"></output>
+      </form>
+    </section>
+    <section class="page" id="dashboard" hidden>
+      <div class="heading">
+        <div><p class="eyebrow">Appointments</p><h1>Booking desk</h1><p class="subheading">Incoming requests from the FORM & FADE website.</p></div>
+        <div class="topbar-right"><button class="button button-outline notification-control" id="notification-button" type="button">Enable alerts</button><button class="button button-outline" id="refresh-button" type="button"><span aria-hidden="true">↻</span> Refresh</button></div>
+      </div>
+      <div class="stats" aria-label="Booking totals">
+        <div class="stat"><span>All bookings</span><strong id="total-count">0</strong></div>
+        <div class="stat"><span>Needs attention</span><strong id="pending-count">0</strong></div>
+        <div class="stat"><span>Confirmed</span><strong id="confirmed-count">0</strong></div>
+      </div>
+      <div class="toolbar">
+        <input id="search-bookings" type="search" placeholder="Search name, email or service" aria-label="Search bookings">
+        <select id="status-filter" aria-label="Filter by booking status"><option value="all">All statuses</option><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select>
+        <span class="result-count" id="result-count" aria-live="polite"></span>
+      </div>
+      <div class="bookings" id="bookings-list" aria-live="polite"></div>
+      <p class="error" id="dashboard-error" hidden></p>
+      <section class="ledger-section" aria-labelledby="ledger-title">
+        <div class="ledger-heading"><div><p class="eyebrow">Money in · balances · credits</p><h2 id="ledger-title">Transaction ledger</h2><p>Manually record transactions. These entries do not process payments.</p></div></div>
+        <div class="money-stats" aria-label="Financial totals">
+          <div class="stat money-stat"><span>Amount collected</span><strong id="collected-total">KSh 0</strong><small>Recorded receipts</small></div>
+          <div class="stat money-stat"><span>Debts recorded</span><strong id="debt-total">KSh 0</strong><small>Manually logged amounts owed</small></div>
+          <div class="stat money-stat"><span>Credits</span><strong id="credit-total">KSh 0</strong><small>Customer credits issued</small></div>
+        </div>
+        <div class="ledger-layout">
+          <form class="ledger-panel ledger-form" id="transaction-form">
+            <h3 class="panel-heading">Record a transaction</h3>
+            <div class="ledger-field"><label for="transaction-type">Entry type</label><select id="transaction-type" name="type" required><option value="collected">Amount collected</option><option value="debt">Debt / amount owed</option><option value="credit">Customer credit</option></select></div>
+            <div class="ledger-field"><label for="transaction-amount">Amount (KSh)</label><input id="transaction-amount" name="amount" type="number" min="1" max="10000000" step="0.01" required></div>
+            <div class="ledger-field"><label for="transaction-customer">Customer (optional)</label><input id="transaction-customer" name="customer" maxlength="120" placeholder="Name or reference"></div>
+            <div class="ledger-field"><label for="transaction-description">Description</label><input id="transaction-description" name="description" maxlength="200" placeholder="e.g. Haircut payment" required></div>
+            <p class="ledger-hint">Debts and credits are separate manual totals; record repayments as a new collection.</p>
+            <button class="button" type="submit">Save transaction <span aria-hidden="true">↗</span></button>
+            <output class="transaction-message" id="transaction-message" aria-live="polite"></output>
+          </form>
+          <section class="ledger-panel" aria-labelledby="transactions-title">
+            <h3 class="panel-heading" id="transactions-title">Recent activity <span id="transaction-count">0 entries</span></h3>
+            <div class="notification-feed" id="notification-feed" aria-live="polite"><p class="notification-empty">No new transaction notifications.</p></div>
+            <div class="transaction-list" id="transaction-list" aria-live="polite"></div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script type="module">
+    const loginPanel = document.querySelector('#login-panel');
+    const dashboard = document.querySelector('#dashboard');
+    const logoutButton = document.querySelector('#logout-button');
+    const loginMessage = document.querySelector('#login-message');
+    const bookingsList = document.querySelector('#bookings-list');
+    const dashboardError = document.querySelector('#dashboard-error');
+    let bookings = [];
+    let transactions = [];
+    let knownTransactionIds = null;
+    let transactionNotifications = [];
+
+    const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[character]);
+    const formatPrice = amount => `KSh ${Number(amount).toLocaleString('en-KE')}`;
+    const formatServicePrice = amount => amount === 0 ? 'Complimentary' : formatPrice(amount);
+    const formatDate = value => new Intl.DateTimeFormat('en-KE', { dateStyle:'medium', timeZone:'Africa/Nairobi' }).format(new Date(`${value}T12:00:00+03:00`));
+    const formatTimestamp = value => new Intl.DateTimeFormat('en-KE', { dateStyle:'medium', timeStyle:'short', timeZone:'Africa/Nairobi' }).format(new Date(value));
+    const transactionTypeLabels = { collected:'Amount collected', debt:'Debt recorded', credit:'Customer credit' };
+
+    function setSignedIn(isSignedIn) {
+      loginPanel.hidden = isSignedIn;
+      dashboard.hidden = !isSignedIn;
+      logoutButton.hidden = !isSignedIn;
+      if (isSignedIn) {
+        loadBookings();
+        loadTransactions();
+      }
+    }
+
+    function renderBookings() {
+      const search = document.querySelector('#search-bookings').value.trim().toLowerCase();
+      const selectedStatus = document.querySelector('#status-filter').value;
+      const visibleBookings = bookings.filter(booking => {
+        const matchesStatus = selectedStatus === 'all' || booking.status === selectedStatus;
+        const haystack = `${booking.name} ${booking.email} ${booking.serviceName}`.toLowerCase();
+        return matchesStatus && haystack.includes(search);
+      });
+      document.querySelector('#total-count').textContent = bookings.length;
+      document.querySelector('#pending-count').textContent = bookings.filter(booking => booking.status === 'pending').length;
+      document.querySelector('#confirmed-count').textContent = bookings.filter(booking => booking.status === 'confirmed').length;
+      document.querySelector('#result-count').textContent = `${visibleBookings.length} shown`;
+
+      if (!visibleBookings.length) {
+        bookingsList.innerHTML = `<div class="empty">${bookings.length ? 'No bookings match these filters.' : 'No bookings yet. New requests will appear here.'}</div>`;
+        return;
+      }
+
+      bookingsList.innerHTML = visibleBookings.map(booking => `
+        <article class="booking-card">
+          <div class="booking-top">
+            <div><h2 class="booking-name">${escapeHtml(booking.name)}</h2><a class="booking-email" href="mailto:${encodeURIComponent(booking.email)}">${escapeHtml(booking.email)}</a></div>
+            <div class="booking-head-right"><span class="booking-amount">${escapeHtml(formatServicePrice(booking.price))}</span><select class="status-select" data-booking-id="${escapeHtml(booking.id)}" aria-label="Status for ${escapeHtml(booking.name)}"><option value="pending" ${booking.status === 'pending' ? 'selected' : ''}>Pending</option><option value="confirmed" ${booking.status === 'confirmed' ? 'selected' : ''}>Confirmed</option><option value="completed" ${booking.status === 'completed' ? 'selected' : ''}>Completed</option><option value="cancelled" ${booking.status === 'cancelled' ? 'selected' : ''}>Cancelled</option></select></div>
+          </div>
+          <div class="booking-grid">
+            <div class="booking-detail"><span>Service</span><strong>${escapeHtml(booking.serviceName)}</strong></div>
+            <div class="booking-detail"><span>Requested date</span><strong>${escapeHtml(formatDate(booking.date))}</strong></div>
+            <div class="booking-detail"><span>Preferred time</span><strong>${escapeHtml(booking.time)}</strong></div>
+            <div class="booking-detail"><span>Preferred artist</span><strong>${escapeHtml(booking.stylist)}</strong></div>
+          </div>
+          ${booking.notes ? `<p class="booking-notes">${escapeHtml(booking.notes)}</p>` : ''}
+        </article>`).join('');
+    }
+
+    async function loadBookings() {
+      dashboardError.hidden = true;
+      try {
+        const response = await fetch('/api/admin/bookings');
+        if (response.status === 401) { setSignedIn(false); return; }
+        if (!response.ok) throw new Error('Could not load bookings. Please refresh.');
+        bookings = await response.json();
+        renderBookings();
+      } catch (error) {
+        dashboardError.textContent = error.message;
+        dashboardError.hidden = false;
+      }
+    }
+
+    function renderNotifications() {
+      const feed = document.querySelector('#notification-feed');
+      feed.innerHTML = transactionNotifications.length
+        ? transactionNotifications.slice(0, 5).map(item => `<div class="notification-item">${escapeHtml(item.message)} <span>${escapeHtml(item.time)}</span></div>`).join('')
+        : '<p class="notification-empty">No new transaction notifications.</p>';
+    }
+
+    function updateNotificationButton() {
+      const button = document.querySelector('#notification-button');
+      if (!('Notification' in window)) {
+        button.textContent = 'In-app alerts active';
+        button.title = 'Browser notifications are not supported here.';
+      } else if (Notification.permission === 'granted') {
+        button.textContent = 'Browser alerts enabled';
+        button.title = 'Browser alerts are enabled for new transactions.';
+      } else if (Notification.permission === 'denied') {
+        button.textContent = 'Alerts blocked';
+        button.title = 'Allow notifications for this site in your browser settings.';
+      } else {
+        button.textContent = 'Enable alerts';
+        button.removeAttribute('title');
+      }
+    }
+
+    function notifyTransaction(transaction) {
+      const customer = transaction.customer ? ` · ${transaction.customer}` : '';
+      const message = `${transactionTypeLabels[transaction.type]}: ${formatPrice(transaction.amount)}${customer}`;
+      transactionNotifications.unshift({ message, time:formatTimestamp(transaction.createdAt) });
+      renderNotifications();
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification('FORM & FADE transaction', { body:message });
+      }
+    }
+
+    function renderTransactions(totals) {
+      document.querySelector('#collected-total').textContent = formatPrice(totals.collected);
+      document.querySelector('#debt-total').textContent = formatPrice(totals.debt);
+      document.querySelector('#credit-total').textContent = formatPrice(totals.credit);
+      document.querySelector('#transaction-count').textContent = `${transactions.length} ${transactions.length === 1 ? 'entry' : 'entries'}`;
+      const transactionList = document.querySelector('#transaction-list');
+      transactionList.innerHTML = transactions.length ? transactions.map(transaction => `
+        <article class="transaction-row">
+          <div><h4 class="transaction-title"><span class="transaction-type">${escapeHtml(transactionTypeLabels[transaction.type])}</span> · ${escapeHtml(transaction.description)}</h4><p class="transaction-meta">${escapeHtml(transaction.customer || 'No customer listed')} · ${escapeHtml(formatTimestamp(transaction.createdAt))}</p></div>
+          <strong class="transaction-amount">${escapeHtml(formatPrice(transaction.amount))}</strong>
+        </article>`).join('') : '<div class="empty">No transactions recorded yet.</div>';
+    }
+
+    async function loadTransactions() {
+      try {
+        const response = await fetch('/api/admin/transactions');
+        if (response.status === 401) { setSignedIn(false); return; }
+        if (!response.ok) throw new Error('Could not load transactions. Please refresh.');
+        const result = await response.json();
+        const currentIds = new Set(result.transactions.map(transaction => transaction.id));
+        if (knownTransactionIds !== null) {
+          result.transactions.filter(transaction => !knownTransactionIds.has(transaction.id)).forEach(notifyTransaction);
+        }
+        knownTransactionIds = currentIds;
+        transactions = result.transactions;
+        renderTransactions(result.totals);
+      } catch (error) {
+        dashboardError.textContent = error.message;
+        dashboardError.hidden = false;
+      }
+    }
+
+    document.querySelector('#login-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      loginMessage.textContent = '';
+      const credentials = Object.fromEntries(new FormData(form));
+      try {
+        const response = await fetch('/api/admin/login', { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(credentials) });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Sign in failed.');
+        form.reset();
+        setSignedIn(true);
+      } catch (error) {
+        loginMessage.textContent = error.message;
+      }
+    });
+
+    document.querySelector('#bookings-list').addEventListener('change', async event => {
+      if (!event.target.matches('.status-select')) return;
+      const id = event.target.dataset.bookingId;
+      const status = event.target.value;
+      event.target.disabled = true;
+      try {
+        const response = await fetch(`/api/admin/bookings/${encodeURIComponent(id)}`, { method:'PATCH', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ status }) });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Could not update booking.');
+        const booking = bookings.find(item => item.id === id);
+        if (booking) booking.status = status;
+        renderBookings();
+      } catch (error) {
+        dashboardError.textContent = error.message;
+        dashboardError.hidden = false;
+        await loadBookings();
+      }
+    });
+
+    document.querySelector('#transaction-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const message = document.querySelector('#transaction-message');
+      message.textContent = '';
+      submitButton.disabled = true;
+      try {
+        const response = await fetch('/api/admin/transactions', {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body:JSON.stringify(Object.fromEntries(new FormData(form)))
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Could not save this transaction.');
+        form.reset();
+        message.textContent = 'Transaction saved to the ledger.';
+        if (knownTransactionIds && !knownTransactionIds.has(result.id)) {
+          knownTransactionIds.add(result.id);
+          notifyTransaction(result);
+        }
+        await loadTransactions();
+      } catch (error) {
+        message.textContent = error.message;
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    document.querySelector('#search-bookings').addEventListener('input', renderBookings);
+    document.querySelector('#status-filter').addEventListener('change', renderBookings);
+    document.querySelector('#refresh-button').addEventListener('click', () => {
+      loadBookings();
+      loadTransactions();
+    });
+    document.querySelector('#notification-button').addEventListener('click', async event => {
+      if (!('Notification' in window) || Notification.permission === 'denied') {
+        updateNotificationButton();
+        return;
+      }
+      try {
+        await Notification.requestPermission();
+      } catch {
+        return;
+      }
+      updateNotificationButton();
+    });
+    logoutButton.addEventListener('click', async () => {
+      await fetch('/api/admin/logout', { method:'POST' });
+      setSignedIn(false);
+    });
+
+    try {
+      const response = await fetch('/api/admin/session');
+      if (!response.ok) throw new Error('Could not verify the admin session.');
+      const session = await response.json();
+      setSignedIn(session.authenticated);
+    } catch {
+      setSignedIn(false);
+    }
+    updateNotificationButton();
+    window.setInterval(() => {
+      if (!dashboard.hidden) {
+        loadBookings();
+        loadTransactions();
+      }
+    }, 30000);
+  </script>
+</body>
+</html>
